@@ -7,43 +7,49 @@ class Node
 {
 	public:
 		/*
-		@pre:
-		@post:
+		@pre: --
+		@post: Construct a node that contains two null pointer;
+		 one points to the front, and another points to the back; 
+		 and a value that is T().
 		*/
 		Node();
 
 		/*
-		@pre:
-		@post:
+		@pre: The pointer's node contains value say, a_1.
+		@post: The pointer's node now contains value, a_2, that entered through the set method. 
+		 a has been replaced.
 		*/
 		void setValue(T value);			
 
 		/*
-		@pre:
-		@post:
+		@pre: -- 
+		@post: Get the value that contains in the node where the pointer is pointing to.
+		@return: Returns the value.
 		*/
 		T getValue() const;		
 
 		/*
-		@pre:
-		@post:
+		@pre: --
+		@post: Assign the pointer's node's pointer to point to where the other pointer(the parameter) is pointing at. 
+		 Should point to a node that is after itself.
 		*/
 		void setNext(Node<T>* next);
 		
 		/*
-		@pre:
-		@post:
+		@pre: --
+		@post: Assign the pointer's node's pointer to point to where the other pointer(the parameter) is pointing at. 
+		 Should point to a node that is ahead of itself.
 		*/
 		void setPrevious(Node<T>* previous);		
 
 		/*
-		@pre:
-		@post:
+		@pre: --
+		@post: Get the previous node's address.
 		*/
 		Node<T>* getPrevious() const;
 		/*
-		@pre:
-		@post:
+		@pre: --
+		@post: Get the next node's address.
 		*/
 		Node<T>* getNext() const;
 

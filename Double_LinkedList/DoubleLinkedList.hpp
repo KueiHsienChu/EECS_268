@@ -144,9 +144,7 @@ bool DoubleLinkedList<T>::remove(T value) //perhaps I should use find(), anyway.
 							p1 -> setPrevious(nullptr);
 							p2 -> setNext(nullptr);
 							delete p1;
-							p1 = nullptr;
-							p2 = nullptr;
-							p3 = nullptr;
+							p1 = nullptr; p2 = nullptr; p3 = nullptr;
 							m_size--;
 						}
 					else
@@ -227,7 +225,7 @@ Node<T>* DoubleLinkedList<T>::find(T value) const
 	if(isEmpty())
 		return(nullptr);
 	else if(search -> getValue() == value) 
-		return(search);
+		return(search);//if the first node contains the value, return the pointer which points to the 1st node
 	else
 		{
 			while(search -> getValue() != value && search -> getNext() != nullptr)
