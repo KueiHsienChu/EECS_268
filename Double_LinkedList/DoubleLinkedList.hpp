@@ -68,7 +68,10 @@ template <typename T>
 bool DoubleLinkedList<T>::removeBack()
 {
 	if(isEmpty())
-		return(false);
+		{
+			std::cout << "\nList empty";	
+			return(false);
+		}
 	else
 		{
 			Node<T>* last = m_front; //create two pointers
@@ -84,6 +87,7 @@ bool DoubleLinkedList<T>::removeBack()
 			last = nullptr;
 			next_to_last = nullptr;
 			m_size--;
+			std::cout << "\nBack of list removed";
 		return(true);
 		}	
 }
@@ -92,7 +96,10 @@ template <typename T>
 bool DoubleLinkedList<T>::removeFront()
 {
 	if(isEmpty())
-		return(false);
+		{
+			std::cout << "\nList empty";	
+			return(false);
+		}
 	else
 		{
 			Node<T>* temp = m_front;
@@ -108,6 +115,8 @@ bool DoubleLinkedList<T>::removeFront()
 			if(m_size == 0)
 				m_front = nullptr;
 				m_size--;
+				
+				std::cout << "\nFront of list removed";
 				return(true);
 			
 		}
@@ -117,7 +126,10 @@ template <typename T>
 bool DoubleLinkedList<T>::remove(T value) //perhaps I should use find(), anyway..
 {
 	if(isEmpty())
-		return(false);
+		{
+			std::cout << "\nList empty";	
+			return(false);
+		}
 	else
 		{
 			Node<T>* p1 = m_front; //p1 will be the pointer that points to the node with value(if node is found)
@@ -190,7 +202,7 @@ void DoubleLinkedList<T>::insertAhead(T listValue, T newValue) throw(std::runtim
 			right_there = nullptr; //;-)
 		}
 	else
-		throw(std::runtime_error("No value is found on the list! Insert failed"));
+		throw(std::runtime_error("\nNo value is found on the list! Insert failed"));
 }
 
 template <typename T>
@@ -213,7 +225,7 @@ void DoubleLinkedList<T>::insertBehind(T listValue, T newValue) throw(std::runti
 				}
 		}
 	else
-		throw(std::runtime_error("No value is found on the list! Insert failed"));
+		throw(std::runtime_error("\nNo value is found on the list! Insert failed"));
 }
 
 template <typename T>

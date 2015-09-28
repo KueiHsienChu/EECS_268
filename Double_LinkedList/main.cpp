@@ -23,7 +23,7 @@ int main()
 			// push to the front
 			std::cout << "\nInput a value to add:";
 			std::cin >> user_add;
-			std::cout << "\n" << user_add << "added to front of the list";
+			std::cout << "\n" << user_add << " added to front of the list";
 			L2.pushFront(user_add);
 			break;
 			}		
@@ -32,22 +32,23 @@ int main()
 			 // add to the end
 			std::cout << "\nInput a value to add:";
 			std::cin >> user_add;
-			std::cout << "\n" << user_add << "added to back of the list";
+			std::cout << "\n" << user_add << " added to back of the list";
 			L2.pushBack(user_add);
 			break;
 			}
 
 		case 3:	{
 		       	 // insert a value from behind
-			std::cout << "\nGive a value to insert";
+			std::cout << "\nGive a value to insert. ";
 			std::cin >> user_add;
-			std::cout << "\nPick a value to insert behind";
+			std::cout << "\nPick a value to insert behind. ";
 			std::cin >> user_pick;
 			std::cout << "\nAttempting to insert " << user_add << " behind " << user_pick;
 
 			try
 				{
 					L2.insertBehind(user_pick, user_add);
+					std::cout << "\n" << user_add << " inserted behind " << user_pick;
 				}
 			catch(std::exception& e) //handles exceptions		
 				{	
@@ -58,15 +59,16 @@ int main()
 
 		case 4:	{
 			 // insert a value from the front
-			std::cout << "\nGive a value to insert";
+			std::cout << "\nGive a value to insert. ";
 			std::cin >> user_add;
-			std::cout << "\nPick a value to insert ahead of";
+			std::cout << "\nPick a value to insert ahead of. ";
 			std::cin >> user_pick;
 			std::cout << "\nAttempting to insert " << user_add << " ahead " << user_pick;
 
 			try
 				{
 					L2.insertAhead(user_pick, user_add);
+					std::cout << "\n" << user_add << " inserted ahead of " << user_pick;
 				}
 			catch(std::exception& e) //handles exceptions			
 				{
@@ -95,13 +97,13 @@ int main()
 			if(L2.remove(user_pick))
 				std::cout << "\n" << user_pick << " removed from list";		
 			else
-				std::cout << "\n" << user_pick << " not removed from list";		
+				std::cout << "\n" << user_pick << " could not be removed from list!";		
 			break;
 			}
 
 		case 8: {
 			// print the list
-			std::cout << "\nPrint list:";
+			std::cout << "\nPrint list: ";
 			L2.printList();
 			break;
 			}
