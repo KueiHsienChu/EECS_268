@@ -6,3 +6,5 @@ PreconditionViolationException.o: PreconditionViolationException.h PreconditionV
 	g++ -g -Wall -std=c++11 -c PreconditionViolationException.cpp
 main.o: main.cpp Stack.h Stack.hpp Node.h Node.hpp StackInterface.h 
 	g++ -g -Wall -std=c++11 -c main.cpp
+clean:
+	rm *.o Prog 

@@ -24,7 +24,12 @@ void Stack<T>::push(const T newEntry)
 {	//copy from pushFront -- DoubleLinkedlist
 	Node<T>* temp = new Node<T>();
 	temp -> setValue(newEntry);
-	temp -> setNext(m_front);
+
+	if(m_size >= 1)
+		temp -> setNext(m_front);
+	else //m_size == 0
+		temp -> setNext(nullptr);//The deepest node points to nullptr
+
 	m_front = temp;
 	temp = nullptr;
 	m_size++;	
@@ -39,9 +44,10 @@ void Stack<T>::pop() throw(PreconditionViolationException)
 			m_front = m_front -> getNext();
 			delete temp;
 			temp = nullptr;
+			m_size--;
 		}
-	else
-		throw(std::runtime_error("Pop attempted on an empty list"));
+	else 
+		throw(PreconditionViolationException("Pop attempted on an empty list"));
 }
 
 template <typename T>
@@ -52,7 +58,7 @@ T Stack<T>::peek() const throw(PreconditionViolationException)
 			return(m_front -> getValue());	
 		}
 	else
-		throw(std::runtime_error("Peek attempted on an empty list"));
+		throw(PreconditionViolationException("Peek attempted on an empty list"));
 }
 
 
