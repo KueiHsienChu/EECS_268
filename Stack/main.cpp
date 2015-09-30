@@ -83,7 +83,9 @@ int main()
 
 	  }while(input != 5);	
 
-
+	//delete StackInterface
+	delete pile1;
+	pile1 = nullptr;
 
 	return(0);
 }
