@@ -10,7 +10,7 @@ class StackInterface
 	public:
 		/*
 		@pre:
-		@post:
+		@post: an destructor with empty definition
 		*/
 		virtual ~StackInterface() {};
 
