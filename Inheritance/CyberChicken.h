@@ -1,5 +1,6 @@
 #ifndef CYBERCHICKEN_H
 #define CYBERCHICKEN_H
+#include "Chicken.h"
 
 class CyberChicken : public Chicken
 {

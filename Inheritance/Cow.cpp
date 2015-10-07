@@ -1,13 +1,15 @@
+#include "Cow.h"
+
 Cow::Cow()
 {
 	m_name = "Cow";
 	m_sound = "Moo";
-	m_milkProduced = 0;
+	m_milkProduced = 0.0;
 }
 
-double Cow::getMilkProduced() const;
+double Cow::getMilkProduced() const
 {
-	return(m_milkProdeced); 
+	return(m_milkProduced); 
 }
 
 void Cow::setMilkProduced(double gallons)

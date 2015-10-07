@@ -1,6 +1,8 @@
+#include "Chicken.h"
+
 Chicken::Chicken()
 {
-	m_sounds = "Cluck";
+	m_sound = "Cluck";
 	m_name = "Chicken";
 	m_eggs = 0;
 }

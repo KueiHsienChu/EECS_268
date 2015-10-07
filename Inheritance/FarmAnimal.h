@@ -15,7 +15,7 @@ class FarmAnimal
 		   @post:
 		*/
 		std::string getName() const;
-		void setName(std::straing name);
+		void setName(std::string name);
 		std::string getSound() const;
 		void setSound(std::string sound);
 	

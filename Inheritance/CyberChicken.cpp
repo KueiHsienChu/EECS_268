@@ -1,3 +1,5 @@
+#include "CyberChicken.h"
+
 CyberChicken::CyberChicken()
 {
 	m_name = "CyberChicken";

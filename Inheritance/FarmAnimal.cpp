@@ -1,3 +1,5 @@
+#include "FarmAnimal.h"
+
 FarmAnimal::FarmAnimal()
 {
 	m_name = "unset";

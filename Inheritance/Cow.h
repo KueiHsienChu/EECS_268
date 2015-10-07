@@ -1,5 +1,6 @@
 #ifndef COW_H
 #define COW_H
+#include "FarmAnimal.h"
 
 class Cow : public FarmAnimal
 {
@@ -8,7 +9,7 @@ class Cow : public FarmAnimal
 		   @post:
 		*/
 		Cow();
-		double getMilkproduced() const;
+		double getMilkProduced() const;
 		void setMilkProduced(double gallons);
 	
 	protected:
