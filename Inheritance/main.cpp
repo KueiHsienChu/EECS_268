@@ -66,7 +66,7 @@ int main()
 		if(yes_no == "y" || yes_no == "yes" || yes_no == "Y")
 			endloop = true; 								
 		
-	}while(endloop == false);
+	}while(endloop == false); // end of do-while loop
 	
 	std::cout << "Releasing all animals!\n----------------------------------\n";
 	FarmAnimal* temp;
@@ -81,8 +81,12 @@ int main()
 			}
 		goodbyeMessage(*temp);//dereference 
 		
-		myPen.pop();
+		myPen.releaseAnimal();
 	}
+	
+	//test
+	if(myPen.isEmpty())
+		std::cout << "EMPTY!!";
 
 
 
