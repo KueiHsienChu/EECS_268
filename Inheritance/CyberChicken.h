@@ -9,7 +9,13 @@ class CyberChicken : public Chicken
 		  @post: set m_name to "CyberChicken" and m_sound to "Resistance is futile"
 		*/
 		CyberChicken();
+		/* @pre:
+		   @post: get the amount of eggs(int) produced
+		*/
 		int getCyberEggs() const;
+		/* @pre:
+		   @post: set the amount of eggs produced
+		*/
 		void setCyberEggs(int eggs);
 };
 

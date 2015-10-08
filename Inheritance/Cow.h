@@ -6,10 +6,16 @@ class Cow : public FarmAnimal
 {
 	public:
 		/* @pre:
-		   @post:
+		   @post: construct a cow -- name: cow, sound: Mow
 		*/
-		Cow();
+		Cow();   
+		/* @pre:
+		   @post: get the value (double) of the cow produced
+		*/
 		double getMilkProduced() const;
+		/* @pre:
+		   @post: set the amount (double) of mill the cow produced
+		*/
 		void setMilkProduced(double gallons);
 	
 	protected:

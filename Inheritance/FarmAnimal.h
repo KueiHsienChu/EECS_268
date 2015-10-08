@@ -12,11 +12,20 @@ class FarmAnimal
 		*/
 		FarmAnimal();
 		/* @pre:
-		   @post:
+		   @post: get the animal's name
 		*/
 		std::string getName() const;
+		/* @pre:
+		   @post: set the animal's name
+		*/
 		void setName(std::string name);
+		/* @pre:
+		   @post: get the animal's sound
+		*/
 		std::string getSound() const;
+		/* @pre:
+		   @post: set the animal's sound
+		*/
 		void setSound(std::string sound);
 	
 	protected:

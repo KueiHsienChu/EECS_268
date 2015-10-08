@@ -17,7 +17,7 @@ int main()
 	do
 	{	
 		menu();
-		std::cout << "choice";
+		std::cout << "choice : ";
 		std::cin >> choice;
 		do//temporary menu design
 		{
@@ -29,7 +29,6 @@ int main()
 				std::cin >> gallons_of_milk;
 				c1 = static_cast<Cow*>(a1);  //cast c1 to be a1 [make sure this part]
 				c1 -> setMilkProduced(gallons_of_milk);
-				std::cout << c1 -> getMilkProduced();
 				myPen.add(a1);
 				c1 = nullptr;
 				a1 = nullptr;
@@ -38,7 +37,7 @@ int main()
 			else if(choice == 2)
 			{
 				FarmAnimal* a2 = new Chicken();
-				std::cout << "Add an eggless chicken to the pen? Ok. You're the boss.";
+				std::cout << "Add an eggless chicken to the pen? Ok. You're the boss. ";
 				myPen.add(a2);
 				a2 = nullptr;
 			}
@@ -68,22 +67,33 @@ int main()
 		
 	}while(endloop == false); // end of do-while loop
 	
-	std::cout << "Releasing all animals!\n----------------------------------\n";
+	std::cout << "\nReleasing all animals!\n----------------------------------\n";
 	FarmAnimal* temp;
 	while(!myPen.isEmpty())
 	{
 		temp = myPen.peek();
 		if(temp -> getName() == "CyberChicken")
-			{	CyberChicken* c2 = nullptr;
-				c2 = static_cast<CyberChicken*>(temp);
-				std::cout << "The CyberChicken laid " << c2 -> getCyberEggs() << ". Humanity is in truble.\n";
-				c2 = nullptr;	
-			}
+		{	CyberChicken* c2 = nullptr;
+			c2 = static_cast<CyberChicken*>(temp);
+			std::cout << "The CyberChicken laid " << c2 -> getCyberEggs() << ". Humanity is in truble.\n";
+			c2 = nullptr;	
+		}
+		if(temp -> getName() == "Cow")
+		{
+			Cow* a1 = nullptr;
+			a1 = static_cast<Cow*>(temp);
+			std::cout << "The cow produced " << a1 -> getMilkProduced() << " of milk.\n";
+			a1 = nullptr;
+		}
+		if(temp -> getName() == "Chicken")
+			std::cout << "Chicken unable to lay eggs. Perhaps cybornetic implants will help? \n";
+			
 		goodbyeMessage(*temp);//dereference 
 		
 		myPen.releaseAnimal();
 	}
-	
+
+	temp = nullptr;	
 	//test
 	if(myPen.isEmpty())
 		std::cout << "EMPTY!!";
@@ -101,7 +111,7 @@ void goodbyeMessage(const FarmAnimal& animal)
 
 void menu()
 {
-	std::cout << "Select an Animal to add to the Pen: \n";
+	std::cout << "\nSelect an Animal to add to the Pen: \n";
 	std::cout << "1)Cow (produces milk) \n";
 	std::cout << "2)Chicken (cannot lay eggs) \n";
 	std::cout << "3)Cyber Chicken (seems dangerous, but lay eggs) \n";
