@@ -8,18 +8,25 @@ AnimalPen::~AnimalPen()
 {
 }
 
-void AnimalPen::AddAnimal(FarmAnimal* animal)
+void AnimalPen::add(FarmAnimal* animal)
 {
+	push(animal);
 }
 
 FarmAnimal* AnimalPen::peekAtNextAnimal()
-{
+{//not working
+	return(peek());
 }
 
 void AnimalPen::releaseAnimal()
 {
+	//remember the stack is full of pointers
+	pop();
 }
 
-bool isPenEmpty()
+bool AnimalPen::isPenEmpty()
 {
+	
+	return(isEmpty());
+
 }

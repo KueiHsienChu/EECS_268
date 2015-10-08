@@ -7,7 +7,7 @@
 #include "Chicken.h"
 #include "CyberChicken.h"
 
-class AnimalPen : public Stack<FarmAnimal>
+class AnimalPen : public Stack<FarmAnimal*>
 {
 	public:
 		AnimalPen();
