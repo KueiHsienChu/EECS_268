@@ -15,13 +15,19 @@ void AnimalPen::add(FarmAnimal* animal)
 
 FarmAnimal* AnimalPen::peekAtNextAnimal()
 {//not working
-	return(peek());
+	FarmAnimal* temp;
+	temp = peek();
+	return(temp);
 }
 
 void AnimalPen::releaseAnimal()
 {
 	//remember the stack is full of pointers
+	FarmAnimal* temp;
+	temp = peek();
 	pop();
+	delete temp;
+	temp = nullptr;	
 }
 
 bool AnimalPen::isPenEmpty()
