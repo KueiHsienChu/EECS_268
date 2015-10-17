@@ -16,11 +16,11 @@ int main()
 	
 	do
 	{	
-		menu();
-		std::cout << "choice : ";
-		std::cin >> choice;
 		do//temporary menu design
 		{
+			menu();
+			std::cout << "choice : ";
+			std::cin >> choice;
 			if(choice == 1)
 			{
 				FarmAnimal* a1 = new Cow();
@@ -55,9 +55,10 @@ int main()
 			}
 			else
 			{
-				std::cout << "Please enter a valid choice.";
+				std::cout << "Please enter a valid choice!";
+				choice = 0;
 			}
-		}while(choice > 3 || choice < 1);
+		}while(choice == 0);
 		
 		//ask the user if enough animal is added to the pen
 		std::cout << "Done adding animals? (y/n)";
@@ -69,19 +70,24 @@ int main()
 	
 	std::cout << "\nReleasing all animals!\n----------------------------------\n";
 	FarmAnimal* temp;
+	int eggstotal = 0;
+	double milktotal = 0;
+
 	while(!myPen.isEmpty())
 	{
 		temp = myPen.peek();
 		if(temp -> getName() == "CyberChicken")
 		{	CyberChicken* c2 = nullptr;
 			c2 = static_cast<CyberChicken*>(temp);
-			std::cout << "The CyberChicken laid " << c2 -> getCyberEggs() << ". Humanity is in truble.\n";
+			eggstotal += c2 -> getCyberEggs(); //add the eggs
+			std::cout << "The CyberChicken laid " << c2 -> getCyberEggs() << " cyber eggs. Humanity is in truble.\n";
 			c2 = nullptr;	
 		}
 		if(temp -> getName() == "Cow")
 		{
 			Cow* a1 = nullptr;
 			a1 = static_cast<Cow*>(temp);
+		  	milktotal += a1 -> getMilkProduced(); //add the milk	
 			std::cout << "The cow produced " << a1 -> getMilkProduced() << " of milk.\n";
 			a1 = nullptr;
 		}
@@ -94,9 +100,8 @@ int main()
 	}
 
 	temp = nullptr;	
-	//test
-	if(myPen.isEmpty())
-		std::cout << "EMPTY!!";
+	
+	std::cout << "Your farm produced " << milktotal << " gallons of milk and " << eggstotal << " eggs.";
 
 
 

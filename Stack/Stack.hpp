@@ -8,7 +8,7 @@ Stack<T>::Stack()
 template <typename T>
 Stack<T>::~Stack()
 {
-	if(m_size > 0)
+	while(m_size > 0)
 		pop();
 }
 
