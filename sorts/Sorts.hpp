@@ -1,6 +1,18 @@
 template <typename T>
 void Sorts<T>::bubbleSort(T arr[], int size)
 {
+	for(int j = 0; j < size - 1; j++)
+	{
+		for(int i = 0; i < size - 1; i++)
+		{
+			if(arr[i] < arr[i+1])
+			{
+				int temp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = temp;
+			}
+		}
+	}
 }
 
 template <typename T>
@@ -51,7 +63,23 @@ int* Sorts<T>::createTestArray(int size, int min, int max)
 template <typename T>
 double Sorts<T>::sortTimer(std::function<void(T[],int)> sort, T arr[], int size)
 {
+	//elasped is a built-in variable (type double)	
 	
+	//Declarations	
+	std::chrono::system_clock::time_point start;
+	std::chrono::system_clock::time_point end;
+	std::chrono::duration<double> elapsed;
+
+	//Timing something
+	start = std::chrono::system_clock::now();
+	
+	//Do what you want to time
+	sort(arr, size);
+	end = std::chrono::system_clock::now();
+	elapsed = (end - start);
+
+	double time = elapsed.count();
+	return(time);	
 }
 
 
