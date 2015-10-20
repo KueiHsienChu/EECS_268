@@ -37,6 +37,7 @@ int main()
 		if(print_unsorted == "y" || print_unsorted == "Y")
 		{
 			std::cout << "\n[ ";
+			//display array
 			for(int i = 0; i < size; i++)
 			{
 				if(i == size - 1)
@@ -55,7 +56,25 @@ int main()
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array1, size);
 			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}
-
+ 
+		//print sorted array
+		std::cout << "\nDo you want to print the sorted array? (y/n)";
+		std::cin >> print_sorted;
+		if(print_sorted == "y" || print_sorted == "Y")
+		{
+			std::cout << "\n[ ";
+			//display array
+			for(int i = 0; i < size; i++)
+			{
+				if(i == size - 1)
+					std::cout << array1[i] << " ";
+				else
+					std::cout << array1[i] << ", ";
+			}//end for
+					
+			std::cout << " ]";
+		}
+		
 		//continue the test or not
 		std::cout << "\nDo you want to quit? (y/n)";
 		std::cin >> run_loop;

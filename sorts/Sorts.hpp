@@ -5,7 +5,7 @@ void Sorts<T>::bubbleSort(T arr[], int size)
 	{
 		for(int i = 0; i < size - 1; i++)
 		{
-			if(arr[i] < arr[i+1])
+			if(arr[i] > arr[i+1])
 			{
 				int temp = arr[i];
 				arr[i] = arr[i+1];
@@ -18,6 +18,7 @@ void Sorts<T>::bubbleSort(T arr[], int size)
 template <typename T>
 void Sorts<T>::bogoSort(T arr[], int size)
 {
+	
 }
 
 template <typename T>
@@ -33,6 +34,17 @@ void Sorts<T>::selectionSort(T arr[], int size)
 template <typename T>
 bool Sorts<T>::isSorted(T arr[], int size)
 {
+	bool sorted = true;
+	for(int j =0; j < size -1; j++)
+	{
+		for(int i =0; i < size - 1; i++)
+		{
+			if(arr[i] > arr[i+1])
+				sorted = false;	
+		}
+	}//end for
+	
+	return(sorted);
 }
 
 template <typename T>
