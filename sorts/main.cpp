@@ -65,6 +65,8 @@ int main()
 			keep_testing = false; 
 		
 		
+		//prevent memory leaks
+		delete[] array1;
 		
 	}//end while
 	return 0;
