@@ -1,9 +1,13 @@
 #ifndef SORT_H
 #define SORT_H
 
+#include <random>
+#include <ctime>
+#include <chrono>
+#include <cassert>
+#include <functional>
 
 template <typename T>
-
 class Sorts
 {
 	public:
@@ -42,7 +46,7 @@ class Sorts
 		@post: creates a new array of the specified size and contains random values 
 		       that fall within the range specified by min and max (inclusive) not responsible for deleting the array
 		*/
-		int* createRandomIntArray(int size, int min, int max);
+		static int* createTestArray(int size, int min, int max);
 		/*
 		@pre:
 		@post: 	arr is a vaild array of T of size elements, and the < operator is 
@@ -55,5 +59,5 @@ class Sorts
 
 };
 
-
+#include "Sorts.hpp" //damn I need to remember this crap 
 #endif
