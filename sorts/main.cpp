@@ -1,4 +1,4 @@
-include "Sort.h"
+include "Sorts.h"
 
 void printMenu();
 
