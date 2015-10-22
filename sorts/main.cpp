@@ -8,7 +8,7 @@ int main()
 {
 
 	int sort_choice = 0;
-	int size = 0;
+	int size = 0; //size for the array (e.g. 5 -> 0,1,2,3,4)
 	int lower_bound = 0;
 	int upper_bound = 0;
 	bool keep_testing = true;
@@ -56,7 +56,26 @@ int main()
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array1, size);
 			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}
+		else if(sort_choice == 2)
+		{
+			std::cout << "Starting insertion sort.\n";
+			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::insertionSort, array1, size);
+			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
+		}	
+		else if(sort_choice == 3)
+		{
+			std::cout << "Starting selection sort.\n";
+			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::selectionSort, array1, size);
+			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
+		}	
+ 		else if(sort_choice == 4)
+		{
+			std::cout << "Starting bogo sort.\n";
+			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::bogoSort, array1, size);
+			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
+		}	
  
+
 		//print sorted array
 		std::cout << "\nDo you want to print the sorted array? (y/n)";
 		std::cin >> print_sorted;
