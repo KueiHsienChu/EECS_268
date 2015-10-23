@@ -36,7 +36,7 @@ int main()
 		std::cin >> print_unsorted;
 		if(print_unsorted == "y" || print_unsorted == "Y")
 		{
-			std::cout << "\n[ ";
+			std::cout << "\nHere is the unsorted array:\n[ ";
 			//display array
 			for(int i = 0; i < size; i++)
 			{
@@ -46,7 +46,7 @@ int main()
 					std::cout << array1[i] << ", ";
 			}//end for
 					
-			std::cout << " ]";
+			std::cout << " ]\n\n";
 		}
 		
 		//start sorting
@@ -54,25 +54,21 @@ int main()
 		{
 			std::cout << "Starting bubble sort.\n";
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array1, size);
-			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}
 		else if(sort_choice == 2)
 		{
 			std::cout << "Starting insertion sort.\n";
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::insertionSort, array1, size);
-			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}	
 		else if(sort_choice == 3)
 		{
 			std::cout << "Starting selection sort.\n";
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::selectionSort, array1, size);
-			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}	
  		else if(sort_choice == 4)
 		{
 			std::cout << "Starting bogo sort.\n";
 			sort_seconds = Sorts<int>::sortTimer(Sorts<int>::bogoSort, array1, size);
-			std::cout << size << " numbers were sorted in " << sort_seconds << " seconds";
 		}	
  
 
@@ -81,7 +77,7 @@ int main()
 		std::cin >> print_sorted;
 		if(print_sorted == "y" || print_sorted == "Y")
 		{
-			std::cout << "\n[ ";
+			std::cout << "\nHere is the sorted array:\n[ ";
 			//display array
 			for(int i = 0; i < size; i++)
 			{
@@ -91,9 +87,11 @@ int main()
 					std::cout << array1[i] << ", ";
 			}//end for
 					
-			std::cout << " ]";
+			std::cout << " ]\n\n";
 		}
 		
+		std::cout << size << " numbers were sorted in " << sort_seconds << " seconds\n";
+
 		//continue the test or not
 		std::cout << "\nDo you want to quit? (y/n)";
 		std::cin >> run_loop;
