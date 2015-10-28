@@ -2,14 +2,15 @@
 #define NUMBERFILEDRIVER_H
 
 #include <iostream>
+#include "NumberFileGenerator.h"
 
 class NumberFileDriver
 {
 	public:
 		/*
-		@pre: preconditionsarguments is a valid 2-D array and the arguments contained within are valid. 
+		@pre: preconditions: arguments is a valid 2-D array and the arguments contained within are valid. 
 			**The argc and argv should be passed directly from main**
-		@post: post conditions If the arguments are valid, a number file is created following those 
+		@post: post conditions: If the arguments are valid, a number file is created following those 
 			specifications. Otherwise, the help menu is printed and no files are created. 
 		@returns: None. 
 		*/

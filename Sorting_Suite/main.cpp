@@ -2,12 +2,64 @@
 #include "SortDriver.h"
 #include "NumberFileDriver.h"
 #include "NumberFileGenerator.h"
+#include "Test.h"
+#include <iostream>
 
 
 int main(int argc, char** argv)
 {
-	
-	NumberFileDriver::run(argc, argv);
+
+	for(int i = 0; i < argc; i++)
+		std::cout << argv[i] << " ";
+
+	//Verifies there are at least 2 command line arguments
+	/*Verifies the first parameter is either "-create" (for number file generation) 
+	"-sort" (for sort timing) or "-test" (for running the test suite)*/
+	//Prints the help menus from both the NumberFileDriver and SortDriver class when problem is detected
+	/*If at least 2 command line arguments are passed in and the user chose to "-create", 
+	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
+
+
+	if(argc >= 2)
+	{
+		std::string mode = argv[1];
+
+		if(mode == "-create" || mode == "-sort" || mode == "-test")
+		{
+			
+
+			Test test(std::cout);
+
+			//Check for number file creation flag
+			if(mode == "-create")
+			{
+				NumberFileDriver::run(argc, argv);		
+			}
+
+			//Check for sort flag
+			else if (mode == "-sort")
+			{
+				SortDriver::run(argc, argv);
+			}
+
+			//Check for test flag
+			else if (mode == "-test")
+			{
+				test.runTests();
+			}	
+		}
+		else
+		{
+			NumberFileDriver::printHelpMenu();
+			SortDriver::printHelpMenu();
+		}
+	}
+	else
+	{	
+		NumberFileDriver::printHelpMenu();
+		SortDriver::printHelpMenu();
+	}
+
 
 
 /*

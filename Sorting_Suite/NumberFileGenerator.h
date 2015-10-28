@@ -2,6 +2,10 @@
 #define NUMBERFILEGENERATOR_H
 
 #include <iostream>
+#include <fstream>
+#include <random>
+#include <ctime>
+
 
 class NumberFileGenerator
 {

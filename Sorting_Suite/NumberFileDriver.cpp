@@ -2,24 +2,38 @@
 
 void NumberFileDriver::run(int argc, char** argv)
 {
-	bool problem = false;
-
-	//Verifies there are at least 2 command line arguments
-	if(argc < 2)
-		problem = true;
-
-	/*Verifies the first parameter is either "-create" (for number file generation) 
-	"-sort" (for sort timing) or "-test" (for running the test suite)*/
-	else if(argv[0] != "-create" || argv[0] != "-sort" || argv[0] != "-test")
-		problem = true; 
-
-	//Prints the help menus from both the NumberFileDriver and SortDriver class when problem is detected
-	if(problem == true)
-		printHelpMenu();
+	std::string option_ = argv[2];
+	//argument is at 2nd position in argv. (0, 1, 2, ..)
+	//argv:
+	//0 -- program 
+	//1 -- argument for functions
+	//2 -- order of the array
+	//3 -- filename
+	//4 -- amount
+	//5 -- value (for -s) min (for-r)
+	//6 -- max (for -r)
+	
+	if(isValidOption(option_))
+	{
+		//write to file
 		
-	/*If at least 2 command line arguments are passed in and the user chose to "-create", 
-	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
+		if(argument == "-a" && argc == 5)
+			NumberFileGenerator::ascending(argv[3], std::stoi(argv[4]));
 
+		else if(argument == "-d" && argc == 5)
+			NumberFileGenerator::descending(argv[3], std::stoi(argv[4]));
+
+		else if(argument == "-s" && argc == 6)
+			NumberFileGenerator::singleValue(argv[3], std::stoi(argv[4]), std::stoi(argv[5]));
+
+		else if(argument == "-r" && argc == 7)
+			NumberFileGenerator::random(argv[3], std::stoi(argv[4]), std::stoi(argv[5]), std::stoi(argv[6]));
+		else
+			printHelpMenu();
+		
+	}
+	
+	
 
 }
 
@@ -45,4 +59,11 @@ void NumberFileDriver::printHelpMenu()
 
 bool NumberFileDriver::isValidOption(std::string option)
 {
+	if(option == "-a" || option == "-d" || option == "-s" || option == "-r")
+		return true;
+	else
+	{
+		printHelpMenu();
+		return false;
+	}			
 }
