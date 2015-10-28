@@ -31,12 +31,6 @@ class Sorts
 
 		/*
 		@pre:
-		@post: For each index in the array, swap it the value at another random index
-		*/
-		static void shuffle(T arr[], int size, std::default_random_engine& generator);
-
-		/*
-		@pre:
 		@post: creates a new array of the specified size and contains random values 
 		       that fall within the range specified by min and max (inclusive) not responsible for deleting the array
 		*/
@@ -87,7 +81,8 @@ class Sorts
 		//(which are actually two halved of a single array) into a single sorted array
 
 		static void quickSortRec(T arr[], int first, int last, bool median); 
-		/*sorts the array by partitioning the array, quick sortingevery left of the pivot, and quick sorting 			everything right of the pivot passes median to partition to inform that method how to pick a pivot value*/
+		/*sorts the array by partitioning the array, quick sortingevery left of the pivot, and quick sorting 
+		everything right of the pivot passes median to partition to inform that method how to pick a pivot value*/
 
 		static void setMedianPivot(T arr[], int first, int last);
 		//used by quickSort 
@@ -101,7 +96,7 @@ class Sorts
 		use setMedianPivot, otherwise select the last element in the array*/
 		//returns the index of the pivot 
 		
-		static void shuffle(T arr[], int size);
+		static void shuffle(T arr[], int size, std::default_random_engine& generator);
 		//For each index in the array, swap it the value at another random index 
 
 };

@@ -53,27 +53,6 @@ void Sorts<T>::insertionSort(T arr[], int size)
 }
 
 template <typename T>
-void Sorts<T>::shuffle(T arr[], int size, std::default_random_engine& generator)
-{	
-	int temp_arr_label;
-	int temp_value;
-	
-
-	std::uniform_int_distribution<int> distribution(0, size - 1);
-
-	for(int i = 0; i < size; i++)
-	{
-		temp_arr_label = distribution(generator);
-		temp_value = arr[i];
-		arr[i] = arr[temp_arr_label];
-		arr[temp_arr_label] = temp_value;
-	} 
-
-		
-		
-}
-
-template <typename T>
 int* Sorts<T>::createTestArray(int size, int min, int max)
 {
 	//Declare and seed a generator
@@ -97,7 +76,24 @@ int* Sorts<T>::createTestArray(int size, int min, int max)
 template <typename T>
 void Sorts<T>::mergeSort(T arr[], int size)
 {
-
+	//test
+	int mid = size / 2;
+	int rps = size - mid; //right part's size
+	
+	if(mid > 0)
+	{	
+		int* frontp = arr;
+		int* midp = (arr + mid);
+		
+		mergeSort(frontp, mid);
+		mergeSort(midp, rps);
+		merge(frontp, midp, mid, rps);
+		
+		frontp = nullptr;
+		midp = nullptr;
+	}
+		
+	
 }
 
 
@@ -157,6 +153,23 @@ bool Sorts<T>::isSorted(T arr[], int size)
 template <typename T>
 double Sorts<T>::sortTimer(std::function<void(T[],int)> sort, T arr[], int size)
 {
+	//elasped is a built-in variable (type double)	
+	
+	//Declarations	
+	std::chrono::system_clock::time_point start;
+	std::chrono::system_clock::time_point end;
+	std::chrono::duration<double> elapsed;
+
+	//Timing something
+	start = std::chrono::system_clock::now();
+	
+	//Do what you want to time
+	sort(arr, size);
+	end = std::chrono::system_clock::now();
+	elapsed = (end - start);
+
+	double time = elapsed.count();
+	return(time);	
 }
 
 
@@ -165,6 +178,48 @@ double Sorts<T>::sortTimer(std::function<void(T[],int)> sort, T arr[], int size)
 template <typename T>
 void Sorts<T>::merge(T* a1, T* a2, int size1, int size2)
 {
+	//a1 is the left side array
+	//a2 is the right side array
+	
+	//size 1 is the left array's size
+	//size 2 is the right array's size
+	int temp[size1 + size2];
+	int left = 0;
+	int right = 0;
+	int index = 0;
+	
+	while((left < size1) && (right < size2))
+	{
+		if(a1[left] <= a2[right])
+		{
+			temp[index] = a1[left];
+			left++;
+		}
+		else
+		{
+			temp[index] = a2[right];
+			right++;
+		}
+		index++;
+	}
+	
+	while(left < size1)
+	{
+		temp[index] = a1[left];
+		left++;
+		index++;
+	}
+		
+	while(right < size2)
+	{
+		temp[index] = a2[right];
+		right++;
+		index++;
+	}
+	
+	for(int i = 0; i < (size1 + size2); i++)
+		a1[i] = temp[i];
+
 }
 
 template <typename T>
@@ -183,8 +238,8 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 }
 
 template <typename T>
-void Sorts<T>::shuffle(T arr[], int size)
-{
+void Sorts<T>::shuffle(T arr[], int size, std::default_random_engine& generator)
+{		
 }
 
 
