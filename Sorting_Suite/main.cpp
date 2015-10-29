@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 
 	std::cout << "Finished printing created array\n";
 			
-	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::quickSort, array1, size);
+	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian, array1, size);
 	
 	std::cout << "\nHere is the sorted array:\n[ ";	
 	for(int i = 0; i < size; i++)

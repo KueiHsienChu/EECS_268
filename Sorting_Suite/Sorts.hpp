@@ -109,6 +109,8 @@ void Sorts<T>::quickSort(T arr[], int size)
 template <typename T>
 void Sorts<T>::quickSortWithMedian(T arr[], int size)
 {
+	bool m = true;
+	quickSortRec(arr, 0, (size -1), m);
 }
 
 
@@ -239,6 +241,12 @@ void Sorts<T>::quickSortRec(T arr[], int first, int last, bool median)
 template <typename T>
 void Sorts<T>::setMedianPivot(T arr[], int first, int last)
 {
+	int m = first + (last - first)/2;
+	
+	//swap
+	int temp = arr[last];
+	arr[last] = arr[m];
+	arr[m] = temp;
 }
 
 template <typename T>
@@ -290,8 +298,53 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 	
 		return r;
 	}
-	else
+	else //median is true
 	{
+		setMedianPivot(arr, first, last); //arr[m] becomes arr[last]
+		int p = last;
+		int l = first;
+		int r = last - 1;
+
+		while(l < r)
+		{
+			while(arr[l] < arr[p])
+			{
+				if( l == r )
+					break;
+				else	
+					l++;
+			}
+			while(arr[r] > arr[p])
+			{
+				if( r == l )
+					break;
+				else
+					r--;
+			}
+		
+			if(arr[l] == arr[r])
+			{
+				if( l == r )
+					break;
+				l++;
+			}
+			else if(l < r)
+			{
+				int temp = arr[l];
+				arr[l] = arr[r];
+				arr[r] = temp;
+			}
+		}
+		
+		if(arr[r] > arr[p])
+		{
+			int temp = arr[p];
+			arr[p] = arr[r];
+			arr[r] = temp;
+		}
+	
+		
+		return r;		
 	}
 }
 
