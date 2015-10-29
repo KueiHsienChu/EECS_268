@@ -248,27 +248,44 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 	{
 		int p = last;
 		int l = first;
-		int r = last;
+		int r = last - 1;
 
 		while(l < r)
 		{
 			while(arr[l] < arr[p])
 			{
-				l++;
+				if( l == r )
+					break;
+				else	
+					l++;
 			}
 			while(arr[r] > arr[p])
 			{
-				r--;
+				if( r == l )
+					break;
+				else
+					r--;
 			}
 		
 			if(arr[l] == arr[r])
+			{
+				if( l == r )
+					break;
 				l++;
+			}
 			else if(l < r)
 			{
 				int temp = arr[l];
 				arr[l] = arr[r];
 				arr[r] = temp;
 			}
+		}
+		
+		if(arr[r] > arr[p])
+		{
+			int temp = arr[p];
+			arr[p] = arr[r];
+			arr[r] = temp;
 		}
 	
 		return r;
