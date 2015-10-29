@@ -20,9 +20,10 @@ int main(int argc, char** argv)
 	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
 
 
-	if(argc >= 2)
+	if(argc > 2)
 	{
 		std::string mode = argv[1];
+		
 
 		if(mode == "-create" || mode == "-sort" || mode == "-test")
 		{

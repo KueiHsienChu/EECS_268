@@ -12,21 +12,25 @@ void NumberFileDriver::run(int argc, char** argv)
 	//4 -- amount
 	//5 -- value (for -s) min (for-r)
 	//6 -- max (for -r)
+
+	std::cout << "!!!!!!!!!!!!!!!!!!!!!11   IN RUN !!!!!!!1 \n";
 	
 	if(isValidOption(option_))
 	{
 		//write to file
+		std::string order = argv[2];
+		std::cout << order << "\n";
 		
-		if(argument == "-a" && argc == 5)
+		if(order == "-a" && argc >= 5)
 			NumberFileGenerator::ascending(argv[3], std::stoi(argv[4]));
 
-		else if(argument == "-d" && argc == 5)
+		else if(order == "-d" && argc >= 5)
 			NumberFileGenerator::descending(argv[3], std::stoi(argv[4]));
 
-		else if(argument == "-s" && argc == 6)
+		else if(order == "-s" && argc >= 6)
 			NumberFileGenerator::singleValue(argv[3], std::stoi(argv[4]), std::stoi(argv[5]));
 
-		else if(argument == "-r" && argc == 7)
+		else if(order == "-r" && argc >= 7)
 			NumberFileGenerator::random(argv[3], std::stoi(argv[4]), std::stoi(argv[5]), std::stoi(argv[6]));
 		else
 			printHelpMenu();
