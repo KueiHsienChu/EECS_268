@@ -13,7 +13,6 @@ void NumberFileDriver::run(int argc, char** argv)
 	//5 -- value (for -s) min (for-r)
 	//6 -- max (for -r)
 
-	std::cout << "!!!!!!!!!!!!!!!!!!!!!11   IN RUN !!!!!!!1 \n";
 	
 	if(isValidOption(option_))
 	{

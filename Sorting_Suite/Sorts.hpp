@@ -100,6 +100,8 @@ void Sorts<T>::mergeSort(T arr[], int size)
 template <typename T>
 void Sorts<T>::quickSort(T arr[], int size)
 {
+	bool m = false;
+	quickSortRec(arr, 0, (size - 1), m);
 }
 
 
@@ -225,6 +227,13 @@ void Sorts<T>::merge(T* a1, T* a2, int size1, int size2)
 template <typename T>
 void Sorts<T>::quickSortRec(T arr[], int first, int last, bool median)
 {
+	if(first < last)
+	{
+		int k = partition(arr, first, last, median);
+		quickSortRec(arr, first, k - 1, median);
+		quickSortRec(arr, k + 1, last, median);
+	
+	}		
 }
 
 template <typename T>
@@ -234,7 +243,39 @@ void Sorts<T>::setMedianPivot(T arr[], int first, int last)
 
 template <typename T>
 int Sorts<T>::partition(T arr[], int first, int last, bool median)
-{
+{	
+	if(median == false)
+	{
+		int p = last;
+		int l = first;
+		int r = last;
+
+		while(l < r)
+		{
+			while(arr[l] < arr[p])
+			{
+				l++;
+			}
+			while(arr[r] > arr[p])
+			{
+				r--;
+			}
+		
+			if(arr[l] == arr[r])
+				l++;
+			else if(l < r)
+			{
+				int temp = arr[l];
+				arr[l] = arr[r];
+				arr[r] = temp;
+			}
+		}
+	
+		return r;
+	}
+	else
+	{
+	}
 }
 
 template <typename T>

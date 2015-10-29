@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	/*If at least 2 command line arguments are passed in and the user chose to "-create", 
 	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
 
-
+/*
 	if(argc > 2)
 	{
 		std::string mode = argv[1];
@@ -61,9 +61,9 @@ int main(int argc, char** argv)
 		SortDriver::printHelpMenu();
 	}
 
+*/
 
 
-/*
 	//test!!! for my merge sort
 	int size = 10;
 	double sort_seconds = 0.0;
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 
 	std::cout << "Finished printing created array\n";
 			
-	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::mergeSort, array1, size);
+	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::quickSort, array1, size);
 	
 	std::cout << "\nHere is the sorted array:\n[ ";	
 	for(int i = 0; i < size; i++)
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 	std::cout << " ]\n\n";				
 	//end test!!
 
-*/
+
 return 0;
 }
 
