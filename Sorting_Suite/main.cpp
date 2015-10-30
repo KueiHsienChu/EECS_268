@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
 
 
-	if(argc > 2)
+	if(argc >= 2)
 	{
 		std::string mode = argv[1];
 		
@@ -63,9 +63,8 @@ int main(int argc, char** argv)
 
 /*
 
-
 	//test!!! for my merge sort
-	int size = 10;
+	int size = 6;
 	double sort_seconds = 0.0;
 	int* array1 = Sorts<int>::createTestArray(size,0 ,50);
 	
@@ -79,12 +78,17 @@ int main(int argc, char** argv)
 			std::cout << array1[i] << ", ";
 	}//end for
 
-
+	int* a = new int[5];
+	a[0] = 13;
+	a[1] = 37;
+	a[2] = 3;
+	a[3] = 37;
+	a[4] = 35;
 	std::cout << " ]\n\n";
 
 	std::cout << "Finished printing created array\n";
 			
-	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian, array1, size);
+	sort_seconds = Sorts<int>::sortTimer(Sorts<int>::quickSort, array1, size);
 	
 	std::cout << "\nHere is the sorted array:\n[ ";	
 	for(int i = 0; i < size; i++)
@@ -96,7 +100,10 @@ int main(int argc, char** argv)
 	}//end for
 	std::cout << " ]\n\n";				
 	//end test!!
-
+	delete a;
+	delete array1;
+	a = nullptr;
+	array1= nullptr;
 */
 return 0;
 }

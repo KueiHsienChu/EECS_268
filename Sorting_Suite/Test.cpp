@@ -78,7 +78,7 @@ void Test::runTests()
 }
 
 
-Test::Test(std::ostream& os) : os(os), TEST_SIZE(1000), NUM_TESTS(12), MAX_SCORE(80)
+Test::Test(std::ostream& os) : os(os), TEST_SIZE(10000), MAX_SCORE(80)
 {
 	m_testNum = 0;
 }
@@ -564,7 +564,7 @@ bool Test::test_sort22()
 	m_testNum++;
 	printTestMessage(m_testNum, "quick sort called with an array of size " + std::to_string(TEST_SIZE));
 	
-	Sorts<int>::mergeSort(arr, TEST_SIZE);
+        Sorts<int>::quickSort(arr, TEST_SIZE);
 	isPassed = Sorts<int>::isSorted(arr, TEST_SIZE);
 	
 	delete[] arr;
@@ -585,7 +585,7 @@ bool Test::test_sort23()
 	m_testNum++;
 	printTestMessage(m_testNum, "quickSortWithMedian sort called with an array of size " + std::to_string(TEST_SIZE));
 	
-	Sorts<int>::mergeSort(arr, TEST_SIZE);
+        Sorts<int>::quickSortWithMedian(arr, TEST_SIZE);
 	isPassed = Sorts<int>::isSorted(arr, TEST_SIZE);
 	
 	delete[] arr;

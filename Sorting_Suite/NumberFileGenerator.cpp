@@ -9,7 +9,7 @@ void NumberFileGenerator::ascending(std::string fileName, int amount)
 		if(amount > 0)
 		{
 			write << amount << "\n";
-			for(int i = 0; i < amount; i++)
+			for(int i = 1; i < amount; i++)
 				write << i << "\n";
 		}
 	}
@@ -29,7 +29,7 @@ void NumberFileGenerator::descending(std::string fileName, int amount)
 		if(amount > 0)
 		{
 			write << amount << "\n";
-			for(int i = 0; i < amount; i++)
+			for(int i = 1; i < amount; i++)
 				write << amount - i << "\n";
 		}
 	}
@@ -57,7 +57,7 @@ void NumberFileGenerator::random(std::string fileName, int amount, int min, int 
 		if(amount > 0)
 		{
 			write << amount << "\n";
-			for(int i = 0; i < amount; i++)
+			for(int i = 1; i < amount; i++)
 				write << distribution(generator) << "\n";
 		}
 	}
@@ -77,7 +77,7 @@ void NumberFileGenerator::singleValue(std::string fileName, int amount, int valu
 		if(amount > 0)
 		{
 			write << amount << "\n";
-			for(int i = 0; i < amount; i++)
+			for(int i = 1; i < amount; i++)
 				write << value << "\n";
 		}
 	}

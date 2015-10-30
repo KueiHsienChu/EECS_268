@@ -89,9 +89,8 @@ private:
 	std::stringstream ss_redirect;
 	std::streambuf* os_rdbuf;
 
-	const int TEST_SIZE; //stress test size
-	const int NUM_TESTS; //number of tests
-	const int MAX_SCORE; //maximum points available from tests
+        const int TEST_SIZE; //stress test size
+        const int MAX_SCORE; //maximum points available from tests
 
 	inline void redirectOS();
 	inline void restoreOS();

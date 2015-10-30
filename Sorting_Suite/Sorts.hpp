@@ -93,6 +93,8 @@ void Sorts<T>::mergeSort(T arr[], int size)
 		midp = nullptr;
 	}
 		
+	assert(Sorts<T>::isSorted(arr, size));
+	
 	
 }
 
@@ -102,6 +104,8 @@ void Sorts<T>::quickSort(T arr[], int size)
 {
 	bool m = false;
 	quickSortRec(arr, 0, (size - 1), m);
+	
+	
 }
 
 
@@ -111,6 +115,7 @@ void Sorts<T>::quickSortWithMedian(T arr[], int size)
 {
 	bool m = true;
 	quickSortRec(arr, 0, (size -1), m);
+		
 }
 
 
@@ -139,6 +144,9 @@ void Sorts<T>::selectionSort(T arr[], int size)
 		arr[i] = smallest;
 		//so if I(th) element is the smallest, it swap itself;
 	}
+
+	assert(Sorts<T>::isSorted(arr, size));
+	
 }
 
 template <typename T>
@@ -232,7 +240,7 @@ void Sorts<T>::quickSortRec(T arr[], int first, int last, bool median)
 	if(first < last)
 	{
 		int k = partition(arr, first, last, median);
-		quickSortRec(arr, first, k - 1, median);
+		quickSortRec(arr, first, k , median);
 		quickSortRec(arr, k + 1, last, median);
 	
 	}		
@@ -260,25 +268,30 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 
 		while(l < r)
 		{
+			
 			while(arr[l] < arr[p])
 			{
-				if( l == r )
+				if( l == r)
 					break;
-				else	
+				else
+				{	
 					l++;
+				}
+				
+				
 			}
 			while(arr[r] > arr[p])
 			{
-				if( r == l )
+				if( r == l)
 					break;
 				else
+				{	
 					r--;
+				}
 			}
 		
 			if(arr[l] == arr[r])
 			{
-				if( l == r )
-					break;
 				l++;
 			}
 			else if(l < r)
@@ -286,6 +299,7 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 				int temp = arr[l];
 				arr[l] = arr[r];
 				arr[r] = temp;
+				
 			}
 		}
 		
@@ -333,6 +347,8 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 				int temp = arr[l];
 				arr[l] = arr[r];
 				arr[r] = temp;
+				if(l + 1 == r)
+					break;
 			}
 		}
 		
@@ -351,6 +367,20 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median)
 template <typename T>
 void Sorts<T>::shuffle(T arr[], int size, std::default_random_engine& generator)
 {		
+	int temp_arr_label;
+	int temp_value;
+	
+
+	std::uniform_int_distribution<int> distribution(0, size - 1);
+
+	for(int i = 0; i < size; i++)
+	{
+		temp_arr_label = distribution(generator);
+		temp_value = arr[i];
+		arr[i] = arr[temp_arr_label];
+		arr[temp_arr_label] = temp_value;
+	} 
+
 }
 
 

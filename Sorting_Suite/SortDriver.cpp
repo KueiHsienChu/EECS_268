@@ -7,61 +7,98 @@ void SortDriver::run(int argc, char** argv)
 	//0 -- program 
 	//1 -- argument for functions
 	//2 -- sort method
-	//3 -- filename
-	//4 -- inputfile
-	//5 -- outputfile
-
-	std::string sortm = argv[2];
-	std::string filename = argv[3];
-	
-	if(areParametersValid(sortm, filename))
+	//3 -- inputfile
+	//4 -- outputfile
+		
+	if(argc == 5)
 	{
-		
-		int num_elements;
-		std::string outfileName = argv[5];
+		std::string sortm = argv[2];
+		std::string filename = argv[3];
 
-		std::ifstream read(filename);
-		num_elements = getFileCount(read);
+		if(areParametersValid(sortm, filename))
+		{
+		
+			int num_elements;
+			std::string outfileName = argv[4];
+
+			std::ifstream read(filename);
+			num_elements = getFileCount(read);
 	
-		int* array = createArray(read, num_elements);
-
+			int* array = createArray(read, num_elements);
+			int* array_copy = new int[num_elements]; //empty array
+			
 		
-		std::ofstream write(outfileName);
-		double sort_time;
+			std::ofstream write(outfileName);
+			double sort_time;
 				
-		if(sortm == "-bubble")
-		{	
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array, num_elements);
-			write << "bubble " << num_elements << " " << sort_time;
+			if(sortm == "-bubble")
+			{	
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array, num_elements);
+				write << "bubble " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-insertion")
+			{
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::insertionSort, array, num_elements);
+				write << "insertion " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-selection")
+			{
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::selectionSort, array, num_elements);
+				write << "selection " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-merge")
+			{
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::mergeSort, array, num_elements);
+				write << "merge " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-quick")
+			{
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSort, array, num_elements);
+				write << "quick " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-quick3")
+			{
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian, array, num_elements);
+				write << "quick3 " << num_elements << " " << sort_time;
+			}
+			else if(sortm == "-all")
+			{
+				copyArray(array, array_copy, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::bubbleSort, array, num_elements);
+				write << "bubble " << num_elements << " " << sort_time;
+				
+				write << "\n";
+				copyArray(array_copy, array, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::insertionSort, array, num_elements);
+				write << "insertion " << num_elements << " " << sort_time;
+				
+				write << "\n";
+				copyArray(array, array_copy, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::selectionSort, array, num_elements);
+				write << "selection " << num_elements << " " << sort_time;
+				
+				write << "\n";
+				copyArray(array_copy, array, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::mergeSort, array, num_elements);
+				write << "merge " << num_elements << " " << sort_time;
+				
+				write << "\n";
+				copyArray(array, array_copy, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSort, array, num_elements);
+				write << "quick " << num_elements << " " << sort_time;
+				
+				write << "\n";
+				copyArray(array_copy, array, num_elements);
+				sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian, array, num_elements);
+				write << "quick3 " << num_elements << " " << sort_time;
+			}	
+
+		write.close();			
+		delete array;
+		delete array_copy;
+		array = nullptr; array_copy = nullptr;
+		
 		}
-		else if(sortm == "-insertion")
-		{
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::insertionSort, array, num_elements);
-			write << "insertion " << num_elements << " " << sort_time;
-		}
-		else if(sortm == "-selection")
-		{
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::selectionSort, array, num_elements);
-			write << "selection " << num_elements << " " << sort_time;
-		}
-		else if(sortm == "-merge")
-		{
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::mergeSort, array, num_elements);
-			write << "merge " << num_elements << " " << sort_time;
-		}
-		else if(sortm == "-quick")
-		{
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSort, array, num_elements);
-			write << "quick " << num_elements << " " << sort_time;
-		}
-		else if(sortm == "-quick3")
-		{
-			sort_time = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian, array, num_elements);
-			write << "quick3 " << num_elements << " " << sort_time;
-		}
-		else if(sortm == "-all")
-		{
-		}	
 	}
 	else
 	{
@@ -153,6 +190,8 @@ int* SortDriver::createArray(std::ifstream& inputFile, int size)
 
 void SortDriver::copyArray(int original[], int copy[], int size)
 {
+	for(int i = 0; i < size; i++)
+		copy[i] = original[i];
 }
 
 
