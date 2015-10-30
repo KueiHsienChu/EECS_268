@@ -2,6 +2,8 @@
 #define SORT_DRIVER_H
 
 #include <iostream>
+#include <fstream>
+#include "Sorts.h"
 
 class SortDriver
 {

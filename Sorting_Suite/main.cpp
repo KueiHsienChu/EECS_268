@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	/*If at least 2 command line arguments are passed in and the user chose to "-create", 
 	"-sort", or "-test" the argc and argv are then passed to the appropriate run method.*/
 
-/*
+
 	if(argc > 2)
 	{
 		std::string mode = argv[1];
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 		SortDriver::printHelpMenu();
 	}
 
-*/
+/*
 
 
 	//test!!! for my merge sort
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 	std::cout << " ]\n\n";				
 	//end test!!
 
-
+*/
 return 0;
 }
 
