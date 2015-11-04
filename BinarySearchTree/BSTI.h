@@ -1,6 +1,5 @@
 #ifndef BSTI_H
 #define BSTI_H
-
 #include <vector>
 
 enum Order

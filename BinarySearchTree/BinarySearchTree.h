@@ -50,6 +50,18 @@ class BinarySearchTree : public BSTI<T>
 		@pre: 
 		@post:
 		*/
+		void printTree(Order order) const;
+
+		/*
+		@pre: 
+		@post:
+		*/
+		void sortedPrint()const;
+
+		/*
+		@pre: 
+		@post:
+		*/
 		bool search(T value) const;
 
 		/*

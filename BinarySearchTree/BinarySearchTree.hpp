@@ -28,6 +28,18 @@ bool BinarySearchTree<T>::isEmpty() const
 }
 
 template<typename T>
+void BinarySearchTree<T>::printTree(Order order) const
+{
+	
+}
+
+template<typename T>
+void BinarySearchTree<T>::sortedPrint()const
+{
+
+}
+
+template<typename T>
 bool BinarySearchTree<T>::add(T value) 
 {
 
@@ -45,18 +57,14 @@ std::vector<T> BinarySearchTree<T>::treeToVector(Order order) const
 
 }
 
-//private methods
+///////////////////////////////////////////private methods/////////////////////////////////////////////
+
 template<typename T>
 bool BinarySearchTree<T>::add(T value, Node<T>* subtree)
 {
 
 }
 
-template<typename T>
-void BinarySearchTree<T>::sortedPrint() const
-{
-
-}
 
 template<typename T>
 void BinarySearchTree<T>::deleteTree(Node<T>* subTree)
