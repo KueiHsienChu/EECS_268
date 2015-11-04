@@ -12,9 +12,10 @@ enum Order
 
 
 template <typename T>
+
 class BSTI
-{	
-	public:
+{
+	public:	
 		/*
 		@pre: 
 		@post:

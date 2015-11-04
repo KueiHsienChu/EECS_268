@@ -1,13 +1,13 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
+
 #include "BSTI.h"
 #include "Node.h"
 
-#include <iostream>
 
 template<typename T>
-class BinarySearchTree : public BSTI<T>
+class BinarySearchTree : public BSTI<T> 
 {
 	public:
 		/*
@@ -30,9 +30,10 @@ class BinarySearchTree : public BSTI<T>
 
 		/*
 		@pre: 
-		@post:
+		@post: Creates a deep copy of this; Returns a pointer to a deep copy of this.
 		*/
 		BSTI<T>* clone(); 
+
 		/*
 		@pre: 
 		@post:
@@ -56,6 +57,7 @@ class BinarySearchTree : public BSTI<T>
 		@post:
 		*/
 		std::vector<T> treeToVector(Order order) const;
+
 	
 	private:
 		/*
