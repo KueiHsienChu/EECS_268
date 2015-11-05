@@ -17,6 +17,12 @@ Node<T>* Node<T>::getLeft()
 }
 
 template<typename T>
+T Node<T>::getValue()
+{
+	return(m_value);
+}
+
+template<typename T>
 Node<T>* Node<T>::getRight()
 {
 	return(m_right);

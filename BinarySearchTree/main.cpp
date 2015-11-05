@@ -1,13 +1,50 @@
 #include "BinarySearchTree.h"
 #include "Test.h"
-
+#include <climits>
 #include <iostream>
 
 void printMenu();
 
 int main(int argc, char** argv)
 {
+
+	if(argc > 1)
+	{
+		std::string arg = argv[1];
+
+		if(arg == "-test")
+		{
+			Test test;
+			test.runTests();
+		}
+		else
+		{
+			int nums = std::stoi(argv[2]);
+		
+			std::random_device randomDevice;	
+			std::default_random_engine generator(randomDevice());
+			std::uniform_int_distribution<int> distribution(INT_MIN, INT_MAX);
+		
+			std::vector<int> vec;
+			int rand = 0;
+			int numberAdded = 0;
+		
+			while(numberAdded < nums)
+			{	
+				rand = distribution(generator);
+				vec.push_back(rand);
+				numberAdded++;
+			}
+		}
+			
+	}
 	
+	
+	
+	
+	
+
+
 
 
 	return 0;

@@ -32,6 +32,12 @@ class Node
 		@post: return m_right
 		*/
 		Node<T>* getRight();
+		
+		/*
+		@pre: 
+		@post: return m_value
+		*/
+		T getValue();
 
 		/*
 		@pre: 
