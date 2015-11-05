@@ -1,7 +1,7 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
-
+#include <iostream>
 #include "BSTI.h"
 #include "Node.h"
 
@@ -78,8 +78,9 @@ class BinarySearchTree : public BSTI<T>
 		*/
 		bool add(T value, Node<T>* subtree);
 		void deleteTree(Node<T>* subTree);
-		bool search(T value, Node<T>* subtree);
+		bool search(T value, Node<T>* subtree) const;
 		void printTree(Node<T>* subtree, Order order) const;
+		void treeToVector(Order order, Node<T>* subtree, std::vector<T>& vec) const;
 
 		Node<T>* m_root;
 };

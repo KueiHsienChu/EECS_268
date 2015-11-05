@@ -25,19 +25,19 @@ class Node
 		@pre: 
 		@post: return m_left
 		*/
-		Node<T>* getLeft();
+		Node<T>* getLeft() const;
 
 		/*
 		@pre: 
 		@post: return m_right
 		*/
-		Node<T>* getRight();
+		Node<T>* getRight() const;
 		
 		/*
 		@pre: 
 		@post: return m_value
 		*/
-		T getValue();
+		T getValue() const;
 
 		/*
 		@pre: 

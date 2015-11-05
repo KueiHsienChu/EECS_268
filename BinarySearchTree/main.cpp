@@ -39,6 +39,13 @@ int main(int argc, char** argv)
 			
 	}
 	
+	BSTI<int>* bst = new BinarySearchTree<int>();
+	bst->add(20);
+	bst->add(22);
+	bool test = bst->search(20);
+	bool test2 = bst->search(22);
+	std::cout << test << " " << test2;
+	
 	
 	
 	

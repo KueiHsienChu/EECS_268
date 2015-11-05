@@ -8,22 +8,28 @@ Node<T>::Node()
 template<typename T>
 Node<T>::Node(const Node<T>& other)
 {
+	if(other->getLeft() != nullptr)
+		Node(other->getLeft());
+	if(other->getRight() != nullptr)
+		Node(other->getRight());
+	Node<T>* copy = new Node<T>();
+	copy->setValue(other->getValue());
 }
 
 template<typename T>
-Node<T>* Node<T>::getLeft()
+Node<T>* Node<T>::getLeft() const
 {
 	return(m_left);
 }
 
 template<typename T>
-T Node<T>::getValue()
+T Node<T>::getValue() const
 {
 	return(m_value);
 }
 
 template<typename T>
-Node<T>* Node<T>::getRight()
+Node<T>* Node<T>::getRight() const
 {
 	return(m_right);
 }
