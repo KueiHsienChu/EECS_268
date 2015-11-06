@@ -7,7 +7,7 @@ BinarySearchTree<T>::BinarySearchTree()
 template<typename T>
 BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other) 
 {
-	m_root = new Node<T>(*other.m_root);
+	m_root = new Node<T>(*(other.m_root));
 	//the member of the binary search tree is a pointer
 	//so once it's dereferenced, it returns a node
 }
@@ -15,24 +15,23 @@ BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other)
 template<typename T>
 BinarySearchTree<T>::~BinarySearchTree()
 {
+	if(isEmpty())
+	{
+	}
+	else
+	{
 		deleteTree(m_root);
-		delete m_root;
 		m_root = nullptr;
+	}
 }
 
 template<typename T>
 BSTI<T>* BinarySearchTree<T>::clone() 
 {
-		
-	if(isEmpty())
-		return(nullptr);
-	else
-	{
-		BSTI<T>* bstclone = new BinarySearchTree(*this);
-		return bstclone;
-	}			
-		
-		
+
+	BSTI<T>* bstclone = new BinarySearchTree(*this);
+	return bstclone;
+
 }
 
 template<typename T>
@@ -155,21 +154,14 @@ bool BinarySearchTree<T>::add(T value, Node<T>* subtree)
 
 template<typename T>
 void BinarySearchTree<T>::deleteTree(Node<T>* subTree)
-{/*
+{
 	if(subTree->getLeft() != nullptr)
-	{
 		deleteTree(subTree->getLeft());
-		delete subTree->getLeft();
-		subTree->setLeft(nullptr);
-	}
-	
+
 	if(subTree->getRight() != nullptr)
-	{
 		deleteTree(subTree->getRight());
-		delete subTree->getRight();
-		subTree->setRight(nullptr);
-	}
-*/	
+
+	delete subTree;
 }
 
 template<typename T>
