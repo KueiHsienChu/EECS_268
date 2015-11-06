@@ -9,18 +9,13 @@ template<typename T>
 Node<T>::Node(const Node<T>& other)
 {
 	m_value = other.getValue();	
-	
+	m_right = nullptr;
+	m_left = nullptr;
+
 	if(other.getLeft() != nullptr)
 		m_left = new Node(*(other.getLeft()));
 	if(other.getRight() != nullptr)
 		m_right = new Node(*(other.getRight()));
-	else
-	{
-	
-		m_right = nullptr;
-		m_left = nullptr;
-	
-	}	
 
 	/*
 	if(other->getLeft() != nullptr)
