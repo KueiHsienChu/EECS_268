@@ -7,13 +7,12 @@ BinarySearchTree<T>::BinarySearchTree()
 template<typename T>
 BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other) 
 {
-	//if(!other.isEmpty())
-	
-	//Node<T>* temp = new Node<T>();
-	//temp->setValue(m_root->getValue);
-	
-	
-	
+	if(other.isEmpty())
+		m_root = nullptr;
+	else
+	{
+		
+	}
 }
 
 template<typename T>
@@ -25,14 +24,22 @@ BinarySearchTree<T>::~BinarySearchTree()
 template<typename T>
 BSTI<T>* BinarySearchTree<T>::clone() 
 {
-		/*
+		
 	if(isEmpty())
 		return(nullptr);
 	else
 	{
-		BSTI<T>* temp = new BinarySearchTree<T>();
+		BSTI<T>* bstclone = new BinarySearchTree();
+		std::vector<T> vec = treeToVector(PRE_ORDER);
+		int i = 0;
+		while(i < vec.size())
+		{
+			bstclone->add(vec[i]);
+			i++;	
+		}
+		return bstclone;
+	}			
 		
-		*/
 		
 }
 
@@ -89,15 +96,8 @@ bool BinarySearchTree<T>::add(T value)
 	
 	else
 	{
-		if( value == m_root->getValue() )
-			return false;
-		if(value > m_root->getValue())
-			return add( value, m_root->getRight() );
-		else
-			return add( value, m_root->getLeft() );
-	}
-	
-		
+		return add(value, m_root);
+	}		
 
 }
 
@@ -126,24 +126,38 @@ std::vector<T> BinarySearchTree<T>::treeToVector(Order order) const
 
 template<typename T>
 bool BinarySearchTree<T>::add(T value, Node<T>* subtree)
-{
-	if(subtree == nullptr)
+{	
+	Node<T>* temp = nullptr;
+
+	if(value > subtree->getValue())
 	{
-		//std::cout << "\nPROCESSED subtree == nullptr\n\n";
-		subtree = new Node<T>();
-		subtree->setValue(value);
-		//std::cout << subtree->getValue() << "\n";
-		return true;
+		if(subtree->getRight() == nullptr)
+		{
+			temp = new Node<T>();
+			temp->setValue(value);
+			subtree->setRight(temp);
+			temp = nullptr;
+			return true;
+		}	
+		else
+			return add(value, subtree->getRight());
 	}
-	else 
-	{
-		if( value == subtree->getValue() )
-			return false;
-		if( value > subtree->getValue() )
-			return add( value, subtree->getRight() );
-		if( value < subtree->getValue() )
-			return add( value, subtree->getLeft() );
+	else if(value < subtree->getValue())
+ 	{
+		if(subtree->getLeft() == nullptr)
+		{
+			temp = new Node<T>();
+			temp->setValue(value);
+			subtree->setLeft(temp);
+			temp = nullptr;
+			return true;
+		}	
+		else
+			return add(value, subtree->getLeft());
 	}
+	else //value == subtree->getValue()
+		return false;
+	
 }
 
 
@@ -168,7 +182,7 @@ bool BinarySearchTree<T>::search(T value, Node<T>* subtree) const
 		return true;
 	else if(value > subtree->getValue())
 		return search(value, subtree->getRight());
-	else if(value < subtree->getValue())
+	else 
 		return search(value, subtree->getLeft());
 }
 
