@@ -275,7 +275,7 @@ bool Test::test_search06()
 		if( !bst->search(vec[i])  )
 		{
 			isPassed = false;	
-			//std::cerr << "ERROR: Search for " << vec[i] << " returned false after being added." << std::endl;
+			std::cerr << "ERROR: Search for " << vec[i] << " returned false after being added." << std::endl;
 		}
 	}	
 

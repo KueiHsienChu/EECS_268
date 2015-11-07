@@ -17,6 +17,7 @@ BinarySearchTree<T>::~BinarySearchTree()
 {
 	if(isEmpty())
 	{
+
 	}
 	else
 	{
@@ -29,8 +30,17 @@ template<typename T>
 BSTI<T>* BinarySearchTree<T>::clone() 
 {
 
-	BSTI<T>* bstclone = new BinarySearchTree(*this);
-	return bstclone;
+	if(isEmpty())
+	{
+		BSTI<T>* bstclone = new BinarySearchTree();
+		return bstclone;
+	}
+	else
+	{
+		BSTI<T>* bstclone = nullptr;
+		bstclone= new BinarySearchTree(*this);
+		return bstclone;
+	}
 
 }
 
@@ -102,13 +112,19 @@ template<typename T>
 std::vector<T> BinarySearchTree<T>::treeToVector(Order order) const 
 {
 	
-	std::vector<T> vector;
+	std::vector<T> vector = {};
 	
-	if(m_root == nullptr)
+	if(isEmpty())
 		return vector;
 	else
 	{
 		treeToVector(order, m_root, vector);
+		int i;
+		while(i < vector.size())
+		{
+			std::cout << vector[i];
+			i++;
+		}
 		return vector;
 	}
 }
@@ -186,6 +202,8 @@ void BinarySearchTree<T>::printTree(Node<T>* subtree, Order order) const
 template<typename T>
 void BinarySearchTree<T>::treeToVector(Order order, Node<T>* subtree, std::vector<T>& vec) const
 {
+	if(subtree == nullptr)
+		return;
 	switch(order)
 	{
 		case PRE_ORDER: {
