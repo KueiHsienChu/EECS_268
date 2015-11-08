@@ -56,25 +56,7 @@ bool BinarySearchTree<T>::isEmpty() const
 template<typename T>
 void BinarySearchTree<T>::printTree(Order order) const
 {
-	switch(order)
-	{
-		case PRE_ORDER: {
-					
-				}
-		
-		case IN_ORDER:  {
-					
-				}
-		
-		case POST_ORDER:{
-					
-				}
-		
-		default:{
-					
-			}
-	}
-	
+	printTree(m_root, order);
 }
 
 template<typename T>
@@ -196,7 +178,36 @@ bool BinarySearchTree<T>::search(T value, Node<T>* subtree) const
 template<typename T>
 void BinarySearchTree<T>::printTree(Node<T>* subtree, Order order) const
 {
-
+	if(subtree == nullptr)
+		return;
+	
+	switch(order)
+	{
+		case PRE_ORDER: {
+					std::cout << subtree->getValue() << " ";
+					printTree(subtree->getLeft(), order);
+					printTree(subtree->getRight(), order);
+					break;
+				}
+		
+		case IN_ORDER:  {
+					printTree(subtree->getLeft(), order);
+					std::cout << subtree->getValue() << " ";
+					printTree(subtree->getRight(), order);
+					break;
+				}
+		
+		case POST_ORDER:{
+					printTree(subtree->getLeft(), order);
+					printTree(subtree->getRight(), order);
+					std::cout << subtree->getValue() << " ";
+					break;
+				}
+		
+		default:{
+					break;	
+			}
+	}	
 }
 
 template<typename T>
