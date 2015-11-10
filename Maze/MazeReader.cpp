@@ -13,7 +13,9 @@ MazeReader::MazeReader(std::string file) throw (MazeCreationException)
 		read >> col_n;
 		read >> start_row;
 		read >> start_col;
-	
+
+			if(row_n < 1 || col_n < 1)
+				throw(MazeCreationException("Rows or Columns are less than 1"));
 			if(start_row >= row_n || start_col >= col_n)
 				throw(MazeCreationException("Starting position has the wrong inputs"));
 	}
@@ -80,22 +82,6 @@ int MazeReader::getStartRow() const
 void MazeReader::readMaze() throw (MazeCreationException)
 {
 	//not needed
-	
-	/*
-	if(col_n > 0 && row_n > 0 && start_row > 0 && start_col > 0)
-	{
-			
-		m_maze = new int*[row_n];
-		for(int i = 0; i < row_n; i++)
-			m_maze[i] = new int*[col_n];
-			
-		for(int d = 0; d < row_n; d++)
-			for(int g = 0; g < col_n; g++)
-				
-	}
-	else
-		throw(MazeCreationException("Maze no good");
-	*/
 
 }
 
