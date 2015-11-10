@@ -3,6 +3,7 @@
 
 #include <stack>
 #include <queue>
+#include "Position.h"
 
 class MazeWalker
 {
@@ -83,5 +84,5 @@ class MazeWalker
 		int m_curStep;
 
 
-}
+};
 #endif

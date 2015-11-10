@@ -1,6 +1,9 @@
 #ifndef MazeReader_H
 #define	MazeReader_H
 
+#include "MazeCreationException.h"
+#include <fstream>
+
 class MazeReader
 {
 	public:
@@ -52,10 +55,15 @@ class MazeReader
 		*       @post the characters representing the maze are stores
 		*/
 		void readMaze() throw (MazeCreationException);  
+		
+	private:
+		
+		char** m_maze;
+		int col_n = 0;
+		int row_n = 0;
+		int start_col = 0;
+		int start_row = 0;
 
-
-
-
-}
+};
 
 #endif

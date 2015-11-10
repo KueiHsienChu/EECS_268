@@ -1,43 +1,45 @@
 #include "MazeWalker.h"
 
-MazeWalker(const char* const* mazePtr, int startRow, int startCol, int rows, int cols, Search searchChoice);
+MazeWalker MazeWalker::MazeWalker(const char* const* mazePtr, int startRow, int startCol, int rows, int cols, Search searchChoice);
+{
+	
+}
+
+MazeWalker MazeWalker::~MazeWalker()
+{
+	
+}
+
+bool MazeWalker::walkMaze()
 {
 }
 
-~MazeWalker()
+const int* const* MazeWalker::getVisited() const
 {
 }
 
-bool walkMaze()
+int MazeWalker::getVisitedRows() const
 {
 }
 
-const int* const* getVisited() const
+int MazeWalker::getVisitedCols() const
 {
 }
 
-int getVisitedRows() const
-{
-}
-
-int getVisitedCols() const
-{
-}
-
-const char* const* getMaze() const
+const char* const* MazeWalker::getMaze() const
 {
 }
 
 //protected
-void storeValidMoves();
+void MazeWalker::storeValidMoves();
 {
 }
 
-void move(Position& p);
+void MazeWalker::move(Position& p);
 {
 }
 
-bool isGoalReached() const;
+bool MazeWalker::isGoalReached() const;
 {
 }
 

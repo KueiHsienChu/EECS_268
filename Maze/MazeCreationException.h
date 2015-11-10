@@ -9,6 +9,6 @@ class MazeCreationException
 		  * @post Creates an exception with the message
 		  */
 		  MazeCreationException(const char* message);
-}
+};
 
 #endif

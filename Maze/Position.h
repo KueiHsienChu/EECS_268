@@ -28,5 +28,5 @@ class Position
 		int m_col;
 
 
-}
+};
 #endif
