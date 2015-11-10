@@ -6,6 +6,9 @@
 class Position
 {
 	public:
+		
+		Position();
+
 		/**
 		*
 		*       @post Position created with row and col values set.

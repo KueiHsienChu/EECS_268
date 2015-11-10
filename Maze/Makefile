@@ -11,7 +11,7 @@ MazeReader.o: MazeReader.h MazeReader.cpp
 	g++ -g -Wall -std=c++11 -c MazeReader.cpp
 
 MazeWalker.o: MazeWalker.h MazeWalker.cpp
-	g++ -g -Wall -std=c++11 -c MazeWalker
+	g++ -g -Wall -std=c++11 -c MazeWalker.cpp
 	
 Position.o: Position.h Position.cpp
 	g++ -g -Wall -std=c++11 -c Position.cpp

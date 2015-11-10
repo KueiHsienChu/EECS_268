@@ -1,26 +1,45 @@
 #include "MazeReader.h"
 
-MazeReader MazeReader::MazeReader(std::string file) throw (MazeCreationException)
+
+MazeReader::MazeReader(std::string file) throw (MazeCreationException)
 {
 	std::ifstream read(file);
 	
-	if(file.good())
+	m_maze = nullptr;
+	
+	if(read.good())
 	{
+		read >> row_n;
+		read >> col_n;
+		read >> start_row;
+		read >> start_col;
+	
+			if(start_row >= row_n || start_col >= col_n)
+				throw(MazeCreationException("Starting position has the wrong inputs"));
 	}
 	else
-		throw(MazeCreationException("No such file exist in your folder");
+		throw(MazeCreationException("No such file exist in your folder"));
 	
 	
-	read >> row_n;
-	read >> col_n;
-	read >> start_row;
-	read >> start_col;	
+	m_maze = new char*[row_n];
+
+	for(int i = 0; i < row_n; i++)
+		m_maze[i] = new char[col_n];
+		
+	for(int d = 0; d < row_n; d++)
+		for(int g = 0; g < col_n; g++)
+			read >> m_maze[d][g];
+	read.close();	
 	
 	
 }
 
-MazeReader MazeReader::~MazeReader()
+MazeReader::~MazeReader()
 {
+	for(int i = 0; i < row_n; i++)
+		delete[] m_maze[i];
+
+	delete [] m_maze;
 }
 
 /**
@@ -29,7 +48,7 @@ MazeReader MazeReader::~MazeReader()
 */
 const char* const* MazeReader::getMaze() const
 {
-	
+	return(m_maze);
 }
 
 int MazeReader::getCols() const
@@ -58,8 +77,11 @@ int MazeReader::getStartRow() const
 *       @pre the file is properly formatted
 *       @post the characters representing the maze are stores
 */
-void MazeReader::readMaze() throw (MazeCreationException);  
+void MazeReader::readMaze() throw (MazeCreationException)
 {
+	//not needed
+	
+	/*
 	if(col_n > 0 && row_n > 0 && start_row > 0 && start_col > 0)
 	{
 			
@@ -73,6 +95,7 @@ void MazeReader::readMaze() throw (MazeCreationException);
 	}
 	else
 		throw(MazeCreationException("Maze no good");
+	*/
 
 }
 

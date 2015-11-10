@@ -5,6 +5,15 @@
 #include <queue>
 #include "Position.h"
 
+
+
+enum class Search
+{
+	DFS,
+	BFS
+};
+
+
 class MazeWalker
 {
 
