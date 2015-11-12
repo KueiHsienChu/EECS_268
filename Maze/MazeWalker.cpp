@@ -50,68 +50,68 @@ bool MazeWalker::walkMaze()
 	beware that value may exceed or less than the m_rows and m_cols, 
 	so we need to set conditions to check
 	*/
-	std::cout << "Position ( " << m_curPos.getRow() << ", " << m_curPos.getCol() << " )";
 	
+
 	if(m_searchType == Search::DFS)
 	{
-		std::cout << "OH YEAH 1 !!!!!\n";
-		
-		int vm = 0; //valid move
+		if(isGoalReached())
+		{
+			while(m_moveStack.size() > 0)
+				m_moveStack.pop();
+			return true;
+		}
+		else
+		{
+			//direction_ is the character at the specific location w.r.t the m_curPos to the maze 
+			char up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
+			char right_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()+1 ];
+			char down_ = m_maze[ m_curPos.getRow()+1 ][ m_curPos.getCol() ];
+			char left_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()-1 ];
+			//positions ---- use to check if they exceeds the boundary of the maze
+			int up_move = m_curPos.getRow()-1;
+			int right_move = m_curPos.getCol()+1;
+			int down_move = m_curPos.getRow()+1;
+			int left_move = m_curPos.getCol()-1;
 
-		Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
-		if(m_maze[ up.getRow() ][ up.getCol() ] == 'P') //so it's within range
-		{
-			m_moveStack.push(up);
-			vm++;
-		}
-	
-		Position right = Position( m_curPos.getRow() , m_curPos.getCol()+1 );
-		if(m_maze[ right.getRow() ][ right.getCol() ] == 'P') //so it's within range
-		{
-			m_moveStack.push(right);
-			vm++;
-		}
-	
-		Position down = Position( m_curPos.getRow()+1 , m_curPos.getCol() );
-		if(m_maze[ down.getRow() ][ down.getCol() ] == 'P')  //so it's within range
-		{
-			m_moveStack.push(down);
-			vm++;
-		}
+			if((up_ == 'P' || up_ == 'E') && up_move >= 0) //so it's within range
+			{
+				Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
+				m_moveStack.push(up);
+			}
+			
+			if((right_ == 'P' || right_ == 'E') && right_move < m_cols) //so it's within range
+			{
+				Position right = Position( m_curPos.getRow() , m_curPos.getCol()+1 );
+				m_moveStack.push(right);
+			}
 		
-		Position left = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
-		if(m_maze[ left.getRow() ][ left.getCol() ] == 'P')  //so it's within range
-		{
-			m_moveStack.push(left);
-			vm++;
-		}
-		while(vm > 0)
-		{	
-			std::cout << "OH YEAH 2 !!!!!\n";
-			move(m_moveStack.top()); //move to that position; m_curPos is now at the position of the top stored position of the stack
-			std::cout << "OH YEAH 3 !!!!!\n";
-			storeValidMoves(); //store the moves
-			std::cout << "OH YEAH 4 !!!!!\n";
-			m_moveStack.pop(); //pop this in the stack
-			//std::cout << "Position ( " << m_curPos.getRow() << ", " << m_curPos.getCol() << " )";
-			std::cout << "OH YEAH 5 !!!!!\n";
-			if(isGoalReached())
+			if((down_ == 'P' || down_ == 'E') && down_move < m_rows)  //so it's within range
 			{
-				return true;
+				Position down = Position( m_curPos.getRow()+1 , m_curPos.getCol() );
+				m_moveStack.push(down);
 			}
-			else if(m_maze[m_curPos.getRow()][m_curPos.getCol()] == 'P')
+		
+			if((left_ == 'P' || left_ == 'E') && left_move >= 0 )  //so it's within range
 			{
-				std::cout << "OH YEAH 6 !!!!!\n";
-				walkMaze();
+				Position left = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
+				m_moveStack.push(left);
 			}
-			std::cout << "OH YEAH 7 !!!!!\n";
-			vm--;
-		}
-	}//end if DFS
-	
+
+			while(m_moveStack.size() > 0)
+			{	
+				Position temp = Position(m_moveStack.top().getRow(), m_moveStack.top().getCol());
+				m_moveStack.pop(); //pop
+				if( m_visited[ temp.getRow() ][ temp.getCol() ] == 0 )
+				{	move(temp); //move to that temporary position
+					storeValidMoves(); //mark as visited
+					walkMaze();
+				}
+				
+			}
+		}//end else
+			
+	}//end if DFS	
 	return false;
-	
-	
 	
 }
 
@@ -162,13 +162,12 @@ void MazeWalker::move(Position& p)
 
 bool MazeWalker::isGoalReached() const
 {
-	if(m_searchType == Search::DFS)
-	{
-		if(m_maze[m_curPos.getRow()][m_curPos.getCol()] == 'E')
-			return true;
-		else
-			return false;
-	}
+	char bang = m_maze[m_curPos.getRow()][m_curPos.getCol()];
+	
+	if(bang != 'E')
+		return false;
+	else
+		return true;
 }
 
 
