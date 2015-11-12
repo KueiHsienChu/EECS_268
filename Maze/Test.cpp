@@ -316,11 +316,21 @@ bool Test::testWalker(std::string testFileName, const int* const* correctArray, 
 
 	try
 	{
+			std::cout << "1!!!!\n";
 		MazeReader mr(testFileName);
+		
+				std::cout << "2!!!!\n";
+	
+		
 		MazeWalker walker(mr.getMaze(), mr.getStartRow(), mr.getStartCol(), 
 						 mr.getRows(), mr.getCols(), searchChoice);
+						 
+				std::cout << "3!!!!\n";
+	
 
 		walker.walkMaze();
+
+		std::cout << "4!!!!\n";
 
 		isPassed = ArrayHelper<int>::areArraysEqual(correctArray, correctRows, correctCols, walker.getVisited(), mr.getRows(), mr.getCols());
 
@@ -363,6 +373,7 @@ bool Test::test_mazeWalker01()
 	printTestMessage(m_testNum, "MazeWalker finds exit in maze.txt in correct order using dfs");
 
 	isPassed = testWalker(testFileName, correctArray, correctRows, correctCols, searchChoice);	
+
 
 	printPassFail(isPassed);
 
