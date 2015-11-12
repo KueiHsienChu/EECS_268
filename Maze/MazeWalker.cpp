@@ -54,6 +54,22 @@ bool MazeWalker::walkMaze()
 
 	if(m_searchType == Search::DFS)
 	{
+		char up_ = 'n'; char right_ = 'n'; char down_ = 'n'; char left_ = 'n';
+		//direction_ is the character at the specific location w.r.t the m_curPos to the maze 
+		if(m_curPos.getRow()-1 >= 0)
+			up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
+		if(m_curPos.getCol()+1 < m_cols)
+			right_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()+1 ];
+		if(m_curPos.getRow()+1 < m_rows)
+			down_ = m_maze[ m_curPos.getRow()+1 ][ m_curPos.getCol() ];
+		if(m_curPos.getCol()-1 >= 0)
+			left_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()-1 ];
+		//positions ---- use to check if they exceeds the boundary of the maze
+		int up_move = m_curPos.getRow()-1;
+		int right_move = m_curPos.getCol()+1;
+		int down_move = m_curPos.getRow()+1;
+		int left_move = m_curPos.getCol()-1;
+		
 		if(isGoalReached())
 		{
 			while(m_moveStack.size() > 0)
@@ -61,21 +77,11 @@ bool MazeWalker::walkMaze()
 			return true;
 		}
 		else
-		{
-			//direction_ is the character at the specific location w.r.t the m_curPos to the maze 
-			char up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
-			char right_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()+1 ];
-			char down_ = m_maze[ m_curPos.getRow()+1 ][ m_curPos.getCol() ];
-			char left_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()-1 ];
-			//positions ---- use to check if they exceeds the boundary of the maze
-			int up_move = m_curPos.getRow()-1;
-			int right_move = m_curPos.getCol()+1;
-			int down_move = m_curPos.getRow()+1;
-			int left_move = m_curPos.getCol()-1;
-
+		{	
 			if((up_ == 'P' || up_ == 'E') && up_move >= 0) //so it's within range
 			{
 				Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
+				
 				m_moveStack.push(up);
 			}
 			
@@ -96,7 +102,6 @@ bool MazeWalker::walkMaze()
 				Position left = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
 				m_moveStack.push(left);
 			}
-
 			while(m_moveStack.size() > 0)
 			{	
 				Position temp = Position(m_moveStack.top().getRow(), m_moveStack.top().getCol());
@@ -107,9 +112,8 @@ bool MazeWalker::walkMaze()
 					walkMaze();
 				}
 				
-			}
-		}//end else
-			
+			}//endwhile
+		}//end else	
 	}//end if DFS	
 	return false;
 	
