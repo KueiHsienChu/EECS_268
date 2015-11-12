@@ -50,25 +50,26 @@ bool MazeWalker::walkMaze()
 	beware that value may exceed or less than the m_rows and m_cols, 
 	so we need to set conditions to check
 	*/
-	
+	char up_ = 'n'; char right_ = 'n'; char down_ = 'n'; char left_ = 'n';
+	//direction_ is the character at the specific location w.r.t the m_curPos to the maze 
+	if(m_curPos.getRow()-1 >= 0)
+		up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
+	if(m_curPos.getCol()+1 < m_cols)
+		right_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()+1 ];
+	if(m_curPos.getRow()+1 < m_rows)
+		down_ = m_maze[ m_curPos.getRow()+1 ][ m_curPos.getCol() ];
+	if(m_curPos.getCol()-1 >= 0)
+		left_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()-1 ];
+	//positions ---- use to check if they exceeds the boundary of the maze
+	int up_move = m_curPos.getRow()-1;
+	int right_move = m_curPos.getCol()+1;
+	int down_move = m_curPos.getRow()+1;
+	int left_move = m_curPos.getCol()-1;
+
 
 	if(m_searchType == Search::DFS)
 	{
-		char up_ = 'n'; char right_ = 'n'; char down_ = 'n'; char left_ = 'n';
-		//direction_ is the character at the specific location w.r.t the m_curPos to the maze 
-		if(m_curPos.getRow()-1 >= 0)
-			up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
-		if(m_curPos.getCol()+1 < m_cols)
-			right_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()+1 ];
-		if(m_curPos.getRow()+1 < m_rows)
-			down_ = m_maze[ m_curPos.getRow()+1 ][ m_curPos.getCol() ];
-		if(m_curPos.getCol()-1 >= 0)
-			left_ = m_maze[ m_curPos.getRow() ][ m_curPos.getCol()-1 ];
-		//positions ---- use to check if they exceeds the boundary of the maze
-		int up_move = m_curPos.getRow()-1;
-		int right_move = m_curPos.getCol()+1;
-		int down_move = m_curPos.getRow()+1;
-		int left_move = m_curPos.getCol()-1;
+	
 		
 		if(isGoalReached())
 		{
@@ -81,7 +82,6 @@ bool MazeWalker::walkMaze()
 			if((up_ == 'P' || up_ == 'E') && up_move >= 0) //so it's within range
 			{
 				Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
-				
 				m_moveStack.push(up);
 			}
 			
@@ -115,6 +115,62 @@ bool MazeWalker::walkMaze()
 			}//endwhile
 		}//end else	
 	}//end if DFS	
+	
+	if(m_searchType == Search::BFS)
+	{
+		m_moveQueue.push(m_curPos);
+		while(m_moveQueue.size() > 0)
+		{
+			m_moveQueue.pop();
+			if(isGoalReached())
+			{
+				while(m_moveQueue.size() > 0)
+					m_moveQueue.pop();
+				return true;
+			}	
+			
+			else
+			{
+				//for each neighbor
+				if((up_ == 'P' || up_ == 'E') && up_move >= 0) //so it's within range
+				{
+					Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
+					m_moveQueue.push(up);
+					move(up);
+					storeValidMoves();
+					m_curPos = Position( m_curPos.getRow()+1 , m_curPos.getCol() );
+				}
+			
+				if((right_ == 'P' || right_ == 'E') && right_move < m_cols) //so it's within range
+				{
+					Position right = Position( m_curPos.getRow() , m_curPos.getCol()+1 );
+					m_moveQueue.push(right);
+					move(right);
+					storeValidMoves();
+					m_curPos = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
+				}
+		
+				if((down_ == 'P' || down_ == 'E') && down_move < m_rows)  //so it's within range
+				{
+					Position down = Position( m_curPos.getRow()+1 , m_curPos.getCol() );
+					m_moveQueue.push(down);
+					move(down);
+					storeValidMoves();
+					m_curPos = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
+				}
+		
+				if((left_ == 'P' || left_ == 'E') && left_move >= 0 )  //so it's within range
+				{
+					Position left = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
+					m_moveQueue.push(left);
+					move(left);
+					storeValidMoves();
+					m_curPos = Position( m_curPos.getRow() , m_curPos.getCol()+1 );				
+				}
+			}
+		}//end while
+			
+	}
 	return false;
 	
 }
