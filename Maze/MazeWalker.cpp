@@ -38,7 +38,12 @@ MazeWalker::MazeWalker(const char* const* mazePtr, int startRow, int startCol, i
 MazeWalker::~MazeWalker()
 {
 	m_maze = nullptr;
-	delete m_visited;
+	
+	for(int i = 0; i < m_rows; i++)
+		delete[] m_visited[i];
+
+	delete [] m_visited;
+
 	m_visited = nullptr;
 }
 
@@ -120,40 +125,20 @@ bool MazeWalker::walkMaze()
 		}//end else	
 	}//end if DFS	
 	
-	
-	/*Breadth-First-Search( Maze m )
-	EnQueue( m.StartNode )
-	While Queue.NotEmpty 
-		c <- DeQueue
-		If c is the goal
-		    Exit
-		Else
-		    Foreach neighbor n of c
-			If n "Unvisited"
-			    Mark n "Visited"                    
-			    EnQueue( n )
-		    Mark c "Examined"                    
-	End procedure
-	*/
-
 	if(m_searchType == Search::BFS)
 	{
-		int step = 1;
-		std::cout << "OH YEAH 1 !!!!!!!!!!!!!!\n";
-		m_moveQueue.push(m_curPos);//EnQueue( m.StartNode )
+		m_moveQueue.push(m_curPos); //EnQueue( m.StartNode )
 			
-		while(m_moveQueue.size() > 0 && !isGoalReached())
+		while(m_moveQueue.size() > 0)
 		{
 			
-			std::cout << "OH YEAH 2 !!!!!!!!!!!!!!\n";
-			
 			m_curPos = Position(m_moveQueue.front().getRow(), m_moveQueue.front().getCol());
-			std::cout << "Position (" << m_curPos.getRow() << ", " << m_curPos.getCol() << ")\n";
 			
 			//store valid moves after first run
-			if(m_curPos.getRow() != m_startPos.getRow() && m_curPos.getCol() != m_startPos.getCol())
+			if(m_curPos.getRow() != m_startPos.getRow() || m_curPos.getCol() != m_startPos.getCol())
 				storeValidMoves();
-				
+			
+			//conditions	
 			if(m_curPos.getRow()-1 >= 0)
 				up_ = m_maze[ m_curPos.getRow()-1 ][ m_curPos.getCol() ];
 			else
@@ -183,22 +168,16 @@ bool MazeWalker::walkMaze()
 				while(m_moveQueue.size() > 0)
 				{
 					m_moveQueue.pop();
-					std::cout << "Goal reached!!!" << "m_moveQueue size: " << m_moveQueue.size() << "\n";
 				}
 				return true;
 			}	
 			else
 			{	
-				std::cout << "OH YEAH 3 !!!!!!!!!!!!!!\n";
 				//first, we need to store all valid neighbors into the queue
 				//for each neighbor: up - right - down - left
 				if((up_ == 'P' || up_ == 'E') && up_move >= 0) //so it's within range
 				{
-					std::cout << "OH YEAH up !!!!!!!!!!!!!!\n";
-					step++;
-					std::cout << "step: " << step << "\n";
 					//create a position
-					std::cout << "OH YEAH up 1 !!!!!!!!!!!!!!\n";
 					Position up = Position( m_curPos.getRow()-1 , m_curPos.getCol() );
 					//push to quene
 					if( m_visited[ up.getRow() ][ up.getCol() ] == 0 )
@@ -207,9 +186,6 @@ bool MazeWalker::walkMaze()
 			
 				if((right_ == 'P' || right_ == 'E') && right_move < m_cols) //so it's within range
 				{
-					std::cout << "OH YEAH right !!!!!!!!!!!!!!\n";
-					step++;
-					std::cout << "step: " << step << "\n";
 					Position right = Position( m_curPos.getRow() , m_curPos.getCol()+1 );
 					if( m_visited[ right.getRow() ][ right.getCol() ] == 0 )
 						m_moveQueue.push(right);
@@ -217,9 +193,6 @@ bool MazeWalker::walkMaze()
 		
 				if((down_ == 'P' || down_ == 'E') && down_move < m_rows)  //so it's within range
 				{
-					std::cout << "OH YEAH down !!!!!!!!!!!!!!\n";
-					step++;
-					std::cout << "step: " << step << "\n";
 					Position down = Position( m_curPos.getRow()+1 , m_curPos.getCol() );
 					if( m_visited[ down.getRow() ][ down.getCol() ] == 0 )
 						m_moveQueue.push(down);
@@ -227,19 +200,12 @@ bool MazeWalker::walkMaze()
 		
 				if((left_ == 'P' || left_ == 'E') && left_move >= 0 )  //so it's within range
 				{
-					std::cout << "OH YEAH left !!!!!!!!!!!!!!\n";
-					step++;
-					std::cout << "step: " << step << "\n";
 					Position left = Position( m_curPos.getRow() , m_curPos.getCol()-1 );
 					if( m_visited[ left.getRow() ][ left.getCol() ] == 0 )
 						m_moveQueue.push(left);			
 				}
 				
-					std::cout << "OH YEAH 4 !!!!!!!!!!!!!!\n";
-				
 			}//end else
-			
-			std::cout << "Queue size: " << m_moveQueue.size() << "\n";
 		}//end while
 			
 	}
