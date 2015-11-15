@@ -20,7 +20,7 @@ MazeReader::MazeReader(std::string file) throw (MazeCreationException)
 				throw(MazeCreationException("Starting position has the wrong inputs"));
 	}
 	else
-		throw(MazeCreationException("No such file exist in your folder"));
+		throw(MazeCreationException("No such file exist in your folder\n"));
 	
 	
 	m_maze = new char*[row_n];

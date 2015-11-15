@@ -1,8 +1,9 @@
 #ifndef MAZECREATIONEXCEPTION_H
 #define MAZECREATIONEXCEPTION_H
 
+#include <stdexcept>
 
-class MazeCreationException
+class MazeCreationException : public std::runtime_error
 {
 	  public:
 		  /**
